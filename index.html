@@ -6,15 +6,66 @@
 
     <style>
 
+        #background{
+            position: relative;
+            width: 500px;
+            height: 600px;
+            margin: 40px auto;
+            border: 2px solid white;
+            background-color: black;
+        }
+
+        #jet{
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: url("assets/img/fighter-jet.png");
+            background-size: contain;
+            background-repeat: no-repeat ;
+            left: 50%;
+            bottom: 0px;
+        }
+
+        #alien{
+            position: absolute;
+            top: 0px;
+            width: 50px;
+            height: 50px;
+            background: url("assets/img/alien-ship.png");
+            background-size: contain;
+            background-repeat: no-repeat ;
+        }
+
     </style>
 
 </head>
 <body>
 
+<div id="scoreBord"></div>
+
 <section id="background">
-    <div id="scoreBord"></div>
+
+    <div id="alien"></div>
+    <div id="bullet"></div>
+    <div id="jet"></div>
 
 </section>
 
 </body>
+<script src="assets/jQuery/jquery-3.6.0.min.js"></script>
+
+<script>
+    var jet = document.getElementById("jet");
+
+    window.addEventListener("keydown",(e)=>{
+        var left = parseInt(window.getComputedStyle(jet).getPropertyValue("left"));
+        if(e.key == "ArrowLeft" && left > 0){
+            jet.style.left = left - 10 + "px";
+        }
+        else if (e.key == "ArrowRight" && left <= 460){
+            jet.style.left = left + 10 + "px";
+        }
+    })
+</script>
+
 </html>
