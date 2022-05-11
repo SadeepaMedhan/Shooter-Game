@@ -6,13 +6,17 @@
 
     <style>
 
+        body{
+            background: url("assets/img/space.gif");
+            background-size: contain;
+        }
+
         #background{
             position: relative;
             width: 500px;
             height: 600px;
             margin: 40px auto;
             border: 2px solid white;
-            background-color: black;
         }
 
         #jet{
@@ -23,7 +27,7 @@
             background-size: contain;
             background-repeat: no-repeat ;
             left: 50%;
-            bottom: 0px;
+            bottom: 0;
         }
 
         #alien{
@@ -34,6 +38,7 @@
             background: url("assets/img/alien-ship.png");
             background-size: contain;
             background-repeat: no-repeat ;
+            margin: auto;
         }
 
     </style>
@@ -56,16 +61,28 @@
 
 <script>
     var jet = document.getElementById("jet");
+    var ab = document.getElementById("alien");
+    var board = document.getElementById("background");
 
     window.addEventListener("keydown",(e)=>{
         var left = parseInt(window.getComputedStyle(jet).getPropertyValue("left"));
         if(e.key == "ArrowLeft" && left > 0){
             jet.style.left = left - 10 + "px";
         }
-        else if (e.key == "ArrowRight" && left <= 460){
+        else if (e.key == "ArrowRight" && left <= 450){
             jet.style.left = left + 10 + "px";
         }
-    })
+    });
+
+    var alienList = setInterval(()=>{
+        var aliens = document.createElement("div");
+        aliens.id = "alien";
+
+        var alienLeft = parseInt(window.getComputedStyle(aliens).getPropertyValue("left"));
+        aliens.style.left = Math.floor(Math.random() * 450) + "px";
+
+        board.append(aliens);
+    }, 1500);
 </script>
 
 </html>
