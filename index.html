@@ -3,177 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Space Shooter</title>
+    <link rel="stylesheet" href="assets/css/mainStyle.css">
 
-    <style>
-
-        body{
-            position: relative;
-            background: url("assets/img/space.gif");
-            background-size: contain;
-        }
-
-        #background{
-            position: relative;
-            width: 500px;
-            height: 600px;
-            margin: 15px auto;
-            border: 2px solid white;
-            overflow: hidden;
-        }
-
-        #jet{
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background: url("assets/img/jet1.png");
-            background-size: contain;
-            background-repeat: no-repeat ;
-            left: 50%;
-            bottom: 0;
-        }
-
-        #bullet{
-            position: absolute;
-            width: 20px;
-            height: 30px;
-            background: url("assets/img/bullet1.png");
-            background-size: contain;
-            background-repeat: no-repeat ;
-            left: 50%;
-            bottom: 50px;
-        }
-
-
-        #alien{
-            position: absolute;
-            top: 0px;
-            width: 50px;
-            height: 50px;
-            background: url("assets/img/alien1.png");
-            background-size: contain;
-            background-repeat: no-repeat ;
-            margin: auto;
-        }
-
-        #scoreBord{
-            position: absolute;
-            top: 0px;
-            width: 200px;
-            height: 100px;
-            border: 1px solid white;
-            margin: 0;
-        }
-
-        #label, #lblScore{
-            color: white;
-            font-size: 2em;
-            display: inline;
-            margin-top: 10px;
-        }
-
-    </style>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 </head>
 <body>
 
 <div id="scoreBord">
-    <p id="label">Score : </p> <p id="lblScore">0</p>
+    <p id="label">Score : </p> <p id="lblScore">0</p> <br>
+    <p>Level : 1 </p>
 </div>
 
 <section id="background">
-
     <div id="alien"></div>
     <div id="bullet"></div>
     <div id="jet"></div>
-
 </section>
 
 </body>
 <script src="assets/jQuery/jquery-3.6.0.min.js"></script>
-
-<script>
-    var jet = document.getElementById("jet");
-    var board = document.getElementById("background");
-    $("#bullet").css("display","none");
-
-    var score = 0;
-
-    window.addEventListener("keydown",(e)=>{
-        var left = parseInt(window.getComputedStyle(jet).getPropertyValue("left"));
-        if(e.key == "ArrowLeft" && left > 0){
-            jet.style.left = left - 10 + "px";
-        }
-        else if (e.key == "ArrowRight" && left <= 450){
-            jet.style.left = left + 10 + "px";
-        }
-
-        if(e.keyCode == 32){
-            var bullet = document.createElement("div");
-           bullet.id = "bullet";
-           board.appendChild(bullet);
-
-           var moveBullet = setInterval(()=>{
-
-               for (var i=0; i<alien.length; i++){
-                   var al = alien[i];
-
-                   var alienBound = al.getBoundingClientRect();
-                   var bulletBound = bullet.getBoundingClientRect();
-
-                   if (bulletBound.left >= alienBound.left &&
-                       bulletBound.right <= alienBound.right &&
-                       bulletBound.bottom <= alienBound.bottom &&
-                       bulletBound.top <= alienBound.top )
-                   {
-                       al.parentElement.removeChild(al);
-                       score = score + 1;
-                       $("#lblScore").text(score);
-                   }
-               }
-
-               var bottomBullet = parseInt(window.getComputedStyle(bullet).getPropertyValue("bottom"));
-
-               bullet.style.left = left + 15 + "px";
-               bullet.style.bottom = bottomBullet + 3 + "px";
-           });
-        }
-
-    });
-
-    var alienList = setInterval(()=>{
-        var aliens = document.createElement("div");
-        aliens.id = "alien";
-
-        var alienLeft = parseInt(window.getComputedStyle(aliens).getPropertyValue("left"));
-        aliens.style.left = Math.floor(Math.random() * 450) + "px";
-
-        board.append(aliens);
-    }, 1500);
-
-    var moveAlien = setInterval(()=>{
-
-        if(alien != undefined){
-            for (var i = 0; i < alien.length; i++){
-                var al = alien[i];
-                var topAlien = parseInt(window.getComputedStyle(al).getPropertyValue("top"));
-
-                if(topAlien >= 550){
-                    gameOver();
-                }
-
-                al.style.top = topAlien + 20 + "px";
-            }
-        }
-    }, 450);
-
-
-    function gameOver(){
-        // alert("Game Over");
-        // clearInterval(moveAlien);
-        // window.location.reload();
-        score = 0;
-    }
-
-</script>
+<script src="assets/js/main.js"></script>
 
 </html>
