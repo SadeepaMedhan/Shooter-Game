@@ -91,6 +91,24 @@
            board.appendChild(bullet);
 
            var moveBullet = setInterval(()=>{
+
+               for (var i=0; i<alien.length; i++){
+                   var al = alien[i];
+
+                   var alienBound = al.getBoundingClientRect();
+                   var bulletBound = bullet.getBoundingClientRect();
+
+                   if (bulletBound.left >= alienBound.left &&
+                       bulletBound.right <= alienBound.right &&
+                       bulletBound.bottom <= alienBound.bottom &&
+                       bulletBound.top <= alienBound.top )
+                   {
+                       al.parentElement.removeChild(al);
+                   }
+               }
+
+
+
                var bottomBullet = parseInt(window.getComputedStyle(bullet).getPropertyValue("bottom"));
 
                bullet.style.left = left + "px";
