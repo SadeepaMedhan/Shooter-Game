@@ -17,25 +17,38 @@
             height: 600px;
             margin: 40px auto;
             border: 2px solid white;
+            overflow: hidden;
         }
 
         #jet{
             position: absolute;
-            width: 40px;
-            height: 40px;
-            background: url("assets/img/fighter-jet.png");
+            width: 50px;
+            height: 50px;
+            background: url("assets/img/jet1.png");
             background-size: contain;
             background-repeat: no-repeat ;
             left: 50%;
             bottom: 0;
         }
 
+        #bullet{
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            background: url("assets/img/bullet1.png");
+            background-size: contain;
+            background-repeat: no-repeat ;
+            left: 50%;
+            bottom: 50px;
+        }
+
+
         #alien{
             position: absolute;
             top: 0px;
             width: 50px;
             height: 50px;
-            background: url("assets/img/alien-ship.png");
+            background: url("assets/img/alien1.png");
             background-size: contain;
             background-repeat: no-repeat ;
             margin: auto;
@@ -61,7 +74,6 @@
 
 <script>
     var jet = document.getElementById("jet");
-    var ab = document.getElementById("alien");
     var board = document.getElementById("background");
 
     window.addEventListener("keydown",(e)=>{
@@ -83,6 +95,19 @@
 
         board.append(aliens);
     }, 1500);
+
+    var moveAlien = setInterval(()=>{
+
+        if(alien != undefined){
+            for (var i = 0; i < alien.length; i++){
+                var al = alien[i];
+                var topAlien = parseInt(window.getComputedStyle(al).getPropertyValue("top"));
+
+                al.style.top = topAlien + 20 + "px";
+            }
+        }
+    }, 450);
+
 </script>
 
 </html>
