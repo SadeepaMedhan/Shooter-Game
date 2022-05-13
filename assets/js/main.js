@@ -75,6 +75,7 @@ var moveAlien = setInterval(()=>{
 
 
 function gameOver(){
+
     swal(
         'Game Over',
         'Score '+score+'.'
