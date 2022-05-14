@@ -7,10 +7,10 @@ body{
 
 #background{
     position: relative;
-    width: 500px;
+    width: 900px;
     height: 600px;
     margin: 15px auto;
-    border: 2px solid white;
+    border: 2px solid rgba(25, 184, 165, 0.85);
     overflow: hidden;
 }
 

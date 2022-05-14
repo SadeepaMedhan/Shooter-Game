@@ -9,7 +9,7 @@ window.addEventListener("keydown",(e)=>{
     if(e.key == "ArrowLeft" && left > 0){
         jet.style.left = left - 10 + "px";
     }
-    else if (e.key == "ArrowRight" && left <= 450){
+    else if (e.key == "ArrowRight" && left <= 850){
         jet.style.left = left + 10 + "px";
     }
 
@@ -52,7 +52,7 @@ var alienList = setInterval(()=>{
     aliens.id = "alien";
 
     var alienLeft = parseInt(window.getComputedStyle(aliens).getPropertyValue("left"));
-    aliens.style.left = Math.floor(Math.random() * 450) + "px";
+    aliens.style.left = Math.floor(Math.random() * 850) + "px";
 
     board.append(aliens);
 }, 1500);
