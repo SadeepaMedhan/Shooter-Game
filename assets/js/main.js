@@ -9,7 +9,7 @@ window.addEventListener("keydown",(e)=>{
     if(e.key == "ArrowLeft" && left > 0){
         moveLeft(left);
     }
-    else if (e.key == "ArrowRight" && left <= 850){
+    if (e.key == "ArrowRight" && left <= 850){
         moveRight(left);
     }
 
@@ -35,13 +35,14 @@ $("#btnShoot").click(function (){
     fire(left, alien);
 });
 
+
+var moveBullet;
 function fire(left, alien){
     var bullet = document.createElement("div");
     bullet.id = "bullet";
     board.appendChild(bullet);
 
-    var moveBullet = setInterval(()=>{
-
+    moveBullet = setInterval(()=>{
         for (var i=0; i<alien.length; i++){
             var al = alien[i];
 
@@ -59,11 +60,14 @@ function fire(left, alien){
                 $("#lblScore").text(score);
             }
         }
-
         var bottomBullet = parseInt(window.getComputedStyle(bullet).getPropertyValue("bottom"));
 
         bullet.style.left = left + 15 + "px";
         bullet.style.bottom = bottomBullet + 3 + "px";
+
+        if (bottomBullet>=800){
+            bullet.parentElement.removeChild(bullet);
+        }
     });
 }
 
@@ -102,6 +106,7 @@ var moveAlien = setInterval(()=>{
 
 function gameOver(){
     clearInterval(alienList);
+    clearInterval(moveBullet);
     swal(
         'Game Over',
         'Score '+score+'.'
