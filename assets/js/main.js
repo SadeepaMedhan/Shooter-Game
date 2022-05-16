@@ -44,7 +44,6 @@ window.addEventListener("keydown",(e)=>{
             bullet.style.bottom = bottomBullet + 3 + "px";
         });
     }
-
 });
 
 var alienList = setInterval(()=>{
@@ -67,7 +66,6 @@ var moveAlien = setInterval(()=>{
             if(topAlien >= 550){
                 gameOver();
             }
-
             al.style.top = topAlien + 20 + "px";
         }
     }
@@ -75,7 +73,7 @@ var moveAlien = setInterval(()=>{
 
 
 function gameOver(){
-
+    clearInterval(alienList);
     swal(
         'Game Over',
         'Score '+score+'.'
@@ -84,5 +82,4 @@ function gameOver(){
         score = 0;
     });
     clearInterval(moveAlien);
-
 }
