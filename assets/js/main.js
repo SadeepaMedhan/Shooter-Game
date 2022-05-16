@@ -14,46 +14,58 @@ window.addEventListener("keydown",(e)=>{
     }
 
     if(e.keyCode == 32){
-        var bullet = document.createElement("div");
-        bullet.id = "bullet";
-        board.appendChild(bullet);
-
-        var moveBullet = setInterval(()=>{
-
-            for (var i=0; i<alien.length; i++){
-                var al = alien[i];
-
-                var alienBound = al.getBoundingClientRect();
-                var bulletBound = bullet.getBoundingClientRect();
-
-                if (bulletBound.left >= alienBound.left &&
-                    bulletBound.right <= alienBound.right &&
-                    bulletBound.bottom <= alienBound.bottom &&
-                    bulletBound.top <= alienBound.top )
-                {
-                    al.parentElement.removeChild(al);
-                    bullet.parentElement.removeChild(bullet);
-                    score = score + 1;
-                    $("#lblScore").text(score);
-                }
-            }
-
-            var bottomBullet = parseInt(window.getComputedStyle(bullet).getPropertyValue("bottom"));
-
-            bullet.style.left = left + 15 + "px";
-            bullet.style.bottom = bottomBullet + 3 + "px";
-        });
+        fire(left, alien);
     }
 });
 
 $("#btnLeft").click(function (){
     var left = parseInt(window.getComputedStyle(jet).getPropertyValue("left"));
-    moveLeft(left);
+    if(left > 0) {
+        moveLeft(left);
+    }
 });
 $("#btnRight").click(function (){
     var left = parseInt(window.getComputedStyle(jet).getPropertyValue("left"));
-    moveRight(left);
+    if(left <= 280) {
+        moveRight(left);
+    }
 });
+$("#btnShoot").click(function (){
+    var left = parseInt(window.getComputedStyle(jet).getPropertyValue("left"));
+    fire(left, alien);
+});
+
+function fire(left, alien){
+    var bullet = document.createElement("div");
+    bullet.id = "bullet";
+    board.appendChild(bullet);
+
+    var moveBullet = setInterval(()=>{
+
+        for (var i=0; i<alien.length; i++){
+            var al = alien[i];
+
+            var alienBound = al.getBoundingClientRect();
+            var bulletBound = bullet.getBoundingClientRect();
+
+            if (bulletBound.left >= alienBound.left &&
+                bulletBound.right <= alienBound.right &&
+                bulletBound.bottom <= alienBound.bottom &&
+                bulletBound.top <= alienBound.top )
+            {
+                al.parentElement.removeChild(al);
+                bullet.parentElement.removeChild(bullet);
+                score = score + 1;
+                $("#lblScore").text(score);
+            }
+        }
+
+        var bottomBullet = parseInt(window.getComputedStyle(bullet).getPropertyValue("bottom"));
+
+        bullet.style.left = left + 15 + "px";
+        bullet.style.bottom = bottomBullet + 3 + "px";
+    });
+}
 
 function moveLeft(l){
     jet.style.left = l - 10 + "px";

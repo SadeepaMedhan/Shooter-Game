@@ -74,17 +74,17 @@ p{
 
 .btn{
     position: absolute;
-    bottom: 15px;
-    width: 50px;
+    bottom: 0;
+    width: 80px;
     height: 30px;
     margin: 0;
 }
 #btnShoot{
     left: 20px;
 }#btnLeft{
-    right: 80px;
+    right: 100px;
 }#btnRight{
-    right: 20px;
+    right: 16px;
 }
 
 @media all and (min-width: 768px) {
@@ -95,5 +95,22 @@ p{
 @media all and (max-width: 320px) {
     .btn{
         display: block;
+    }
+    #background{
+        width: 302px;
+        height: 530px;
+    }
+    #scoreBord{
+        height: 15px;
+        width: 285px;
+    }
+    p{
+        font-size: 1em;
+    }
+    #brTag{
+        display: none;
+    }
+    #lblLevel{
+        padding-left: 80px;
     }
 }
