@@ -71,3 +71,29 @@ p{
     padding-left: 10px;
     padding-top: 10px;
 }
+
+.btn{
+    position: absolute;
+    bottom: 15px;
+    width: 50px;
+    height: 30px;
+    margin: 0;
+}
+#btnShoot{
+    left: 20px;
+}#btnLeft{
+    right: 80px;
+}#btnRight{
+    right: 20px;
+}
+
+@media all and (min-width: 768px) {
+    .btn{
+        display: none;
+    }
+}
+@media all and (max-width: 320px) {
+    .btn{
+        display: block;
+    }
+}

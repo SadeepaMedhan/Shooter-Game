@@ -7,10 +7,10 @@ var score = 0;
 window.addEventListener("keydown",(e)=>{
     var left = parseInt(window.getComputedStyle(jet).getPropertyValue("left"));
     if(e.key == "ArrowLeft" && left > 0){
-        jet.style.left = left - 10 + "px";
+        moveLeft(left);
     }
     else if (e.key == "ArrowRight" && left <= 850){
-        jet.style.left = left + 10 + "px";
+        moveRight(left);
     }
 
     if(e.keyCode == 32){
@@ -45,6 +45,22 @@ window.addEventListener("keydown",(e)=>{
         });
     }
 });
+
+$("#btnLeft").click(function (){
+    var left = parseInt(window.getComputedStyle(jet).getPropertyValue("left"));
+    moveLeft(left);
+});
+$("#btnRight").click(function (){
+    var left = parseInt(window.getComputedStyle(jet).getPropertyValue("left"));
+    moveRight(left);
+});
+
+function moveLeft(l){
+    jet.style.left = l - 10 + "px";
+}
+function moveRight(l){
+    jet.style.left = l + 10 + "px";
+}
 
 var alienList = setInterval(()=>{
     var aliens = document.createElement("div");
