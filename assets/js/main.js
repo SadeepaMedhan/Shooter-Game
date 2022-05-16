@@ -78,8 +78,8 @@ var alienList = setInterval(()=>{
     var aliens = document.createElement("div");
     aliens.id = "alien";
 
-    var alienLeft = parseInt(window.getComputedStyle(aliens).getPropertyValue("left"));
-    aliens.style.left = Math.floor(Math.random() * 850) + "px";
+    var width = parseInt(window.getComputedStyle(board).getPropertyValue("width"));
+    aliens.style.left = Math.floor(Math.random() * (width-50)) + "px";
 
     board.append(aliens);
 }, 1500);
